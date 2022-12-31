@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+      background: lightblue;
+    }
+    .input-field{
+      width: 0;
+      margin: auto;
+      margin-top: 20px;
+      height: 0;
+      border: 1px solid lightcyan;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.45);
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      transition: width 0.4s,height 0.3s;
+      
+      
+    }
+    .input-field.Popup{
+      width: 90%;
+      height: 350px;
+    }
+    .input-field input[type=text],.date{
+      width: 95%;
+
+      margin:0px auto;
+      height: 30px;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      padding:8px;
+      font-weight: bold;
+      font-size: 18px;
+      text-indent: 26px;
+    }
+    .input-field input[type=text]:focus{
+      background: rgba(0,0,0,0.12);
+    }
+    .input-field input[type=button]{
+      width: 20%;
+      height: 30px;
+      text-align: center;
+      margin-top:4px;
+      outline: none;
+      border:none;
+      background: lightblue;
+      box-shadow: 0 0 4px rgba(0,0,0,0.21);
+      padding: 5px 0;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: 0.7s;
+      font-size: 14px;
+      color: dimgray;
+     align-self: center;
+     margin-bottom: 5px;
+    }
+    .input-field input[type=button]:hover{
+      background: lightcyan;
+
+    }
+    .input-field input::placeholder{
+      font-size: 13px;
+      color: gray;
+    }
+    .dataTable{
+      width: 90%;
+      margin: auto;
+      margin-top: 20px;
+      text-align: center;
+      border: 1px solid black;
+      padding: 4px;
+      box-shadow: 0 0 3px black;
+      border-radius: 5px;
+    }
+    .dataTable table{
+      width: 100%;
+      height: 100%;
+    }
+    .dataTable table tr{
+      border:1px solid yellow;
+    }
+    .dataTable table thead{
+      background: lightcyan;
+      width: 100%;
+      border-radius: 3px;
+      box-shadow: 0 0 6px gray;
+      color: rgba(0,0,0,0.21);
+    }
+    .dataTable table thead th{
+      border-radius: 2px;
+    }
+    .dataTable table tbody{
+      text-align: center;
+      background: lightcyan;
+      color: yellowgreen;
+      border: 1px solid lightblue;
+    
+    }
+    .dataTable table tbody td{
+      border-radius: 2px;
+      
+      padding: 3px;
+      border:1px solid blue;
+
+      
+    }
+     label{
+       font-size: 13px;
+       font-weight: bold;
+       color:gray;
+       text-indent: 13px;
+       margin: 0;
+     }
+    .input-field .info{
+      text-align: center;
+      background: lightyellow;
+      padding: 4px;
+      border-bottom: 1px solid green;
+      color: yellowgreen;
+      transform: scale(0);
+      transition: 0.5s;
+    }
+.input-field .info.Show{
+  transform: scale(1);
+}
+ .calculate{
+  background: lightgray;
+  width: 90%;
+  height: 30px;
+  text-align: center;
+  margin: 3px auto;
+}
+.calculate .totalOt{
+  width: 80%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: lightgray;
+  box-shadow: 0 0 3px black;
+  transition: 0.4s;
+}
+.calculate .totalOt:hover{
+  background: gray;
+}
+.input-field .btns{
+  width: 100%;
+  height:80px;
+  background: lightpink;
+  text-align: center;
+  margin: 4px auto;
+}
+
+.showBox{
+  width: 90%;
+  height: 30px;
+  
+  padding: 3px;
+  text-align: center;
+  border-radius: 4px;
+  margin:5px auto;
+  background: gray;
+}
+.showBox .boxBtn{
+  width: 50%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: tomato;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 3px blue;
+  transition: 0.3s;
+}
+.showBox .boxBtn:hover{
+  background: green;
+  padding: 4px;
+  letter-spacing: 1px;
+}
+.wrapper{
+  opacity: 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="showBox">
+    <button class="boxBtn">Show Tools</button>
+  </div> <div class="wrapper">
+  <div class="input-field">
+    <div class="info">Data Added Successfuly</div>
+    <label for="Date">Date:</label>
+    <input type="date" class="date" placeholder="01-12-2022">
+    <label for="DutyTime">DutyTime:</label>
+    <input type="text" class="dutyTime" placeholder="8am-8pm">
+    <label for="OverTime">OverTime:</label>
+    <input type="text" class="overTime" placeholder="3hours">
+    <label for="Note">Note:</label>
+    <input type="text" class="noter" placeholder="Note">
+    <input type="text" class="index" placeholder="Enter Row Number">
+   <div class="btns"> 
+   <input type="button" value="Add" class="submitBtn">
+   <input type="button" class="selectBtn" value="Select">
+   <input type="button" class="updateBtn" value="Update ">
+   <input type="button" class="deleteBtn" value="Delete">
+   <input type="button" class="cancel" value="cancel">
+   </div></div></div>
+    <div class="calculate"><button class="totalOt">Click to See Total Over Time</button></div>
+    <div class="dataTable">
+      <table class="table">
+        <thead>
+          <th>SI</th>
+          <th>Date</th>
+          <th>Duty Time</th>
+          <th>OT</th>
+          <th>Note</th>
+        </thead>
+        <tbody class="tbdy">
+        
+        </tbody>
+      </table>
+    </div>
+ <script type="module">
+
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+          import { getDatabase, ref, get,set, child, update, remove } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+            apiKey: "AIzaSyBUngTkoFhPV_0aSglYbZyhHhEaPyXrT5Y",
+            authDomain: "otapp-b1f1a.firebaseapp.com",
+            projectId: "otapp-b1f1a",
+            storageBucket: "otapp-b1f1a.appspot.com",
+            messagingSenderId: "863825891219",
+            appId: "1:863825891219:web:7d5807b670ea570694e266"
+          };
+        
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const db=getDatabase(app);
+      
+      
+
+ 
+
+let c=(a)=>{
+  return document.querySelector(a);
+};
+
+//______All Reference_)__
+let dateF=c('.date'),dutyF=c('.dutyTime'),otF=c('.overTime');
+let noterF=c('.noter');
+let submitBtn=c('.submitBtn');
+let row=c('.index');
+var dateref=new Date();
+let boxBtn=c('.boxBtn');
+var month=12;
+//extra function------
+function infoBord(txt){
+    c('.info').classList.add('Show');
+    c('.info').innerHTML =txt;
+    setTimeout(() => {
+          c('.info').classList.remove('Show');
+          c('.info').innerHTML = '';
+},5000);}
+let content='Please Fill All Data';
+function validing(inpdata){
+  if(inpdata==''){
+  infoBord(content);
+  return false;
+  }
+  
+  
+}
+boxBtn.onclick=()=>{
+  
+  c('.wrapper').style.opacity=1;
+  c('.input-field').classList.add('Popup');
+};
+
+//____Send Data,,,""""""""
+ let adContent='Data Added';
+function addData(){
+ 
+if(dutyF.value==''){
+  alert('Fail')
+  return false;
+}else{
+  set(ref(db,'OTList/December/'+dateF.value),{
+    DT:dateF.value,
+    DTime:dutyF.value,
+    OT:otF.value,
+    NT:noterF.value
+  
+    
+  }).then(()=>{
+  
+    infoBord(adContent);
+  }).catch((error)=>{
+    alert(error);
+  });
+}}
+
+function clearF(){
+  dateF.value='';
+  dutyF.value='';
+  otF.value='';
+  noterF.value='';
+}
+   submitBtn.onclick=()=>{
+   addData();
+   clearF();
+
+   };
+   
+   //....getingData......
+   let create=(a)=>{
+     return document.createElement(a);
+   };
+   let total=[];
+   let sno=0;
+   let EditArray=[];
+   function createTable(DT,DTime,OT,NT){
+     sno++;
+     total.push(OT);
+     let tr=create('tr');
+     let td1=create('td');
+     let td2=create('td');
+     let td3=create('td');
+     let td4=create('td');
+     let td5=create('td');
+     EditArray.push([DT,DTime,OT,NT]);
+     td1.innerHTML=sno;
+     td2.innerHTML=DT;
+     td3.innerHTML=DTime;
+     td4.innerHTML=OT;
+     td5.innerHTML=NT;
+     
+     tr.appendChild(td1);
+     tr.appendChild(td2);
+     tr.appendChild(td3);
+     tr.appendChild(td4);
+     tr.appendChild(td5);
+     c('.tbdy').appendChild(tr);
+  }
+      
+      c('.selectBtn').onclick=()=>{
+        let index=row.value;
+        if(index==''){
+          alert('Please Select Date To Edit');
+        }else{
+          dateF.value=EditArray[index][0];
+          dutyF.value=EditArray[index][1];
+          otF.value=EditArray[index][2];
+          noterF.value=EditArray[index][3];
+          
+        }
+      };
+      let updTxt='Data Updated';
+      c('.updateBtn').onclick=()=>{
+        set(ref(db, 'OTList/December/' + dateF.value), {
+          DT: dateF.value,
+          DTime: dutyF.value,
+          OT: otF.value,
+          NT: noterF.value
+        
+        
+        }).then(() => {
+        
+          infoBord(updTxt);
+        }).catch((error) => {
+          alert(error);
+        });
+      };
+      /*setTimeout(() => {
+        console.log(EditArray);
+      }, 5000);*/
+  
+  function dataArr(dataList){
+    sno=0;
+    c('.tbdy').innerHTML='';
+    dataList.forEach(function(elm){
+      createTable(elm.DT,elm.DTime,elm.OT,elm.NT);
+    });
+  }
+  
+  function getData(){
+    const dbref=ref(db);
+    get(child(dbref,'OTList/December/'+dateF.value)).then((snap)=>{
+      var data=[];
+      snap.forEach((childSnap)=>{
+        data.push(childSnap.val());
+      });
+      dataArr(data);
+      
+    }).catch((err)=>{
+      alert(err.message);
+    });
+
+  }
+  let sum;
+function calc(){
+  
+  let sum=total.reduce((tota,num)=>{
+    return eval(Number(tota)+Number(num));
+  });
+c('.totalOt').innerHTML=sum;
+
+}
+    c('.totalOt').onclick=()=>{
+      calc();
+      
+    };
+  
+  
+   window.onload=()=>{
+     getData();
+     
+   };
+
+   
+ </script>
+ 
+
+
+</body>
+</html>
